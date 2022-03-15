@@ -148,4 +148,14 @@ public class TestUserMapper {
         System.out.println(u);
     }
 
+    @Test
+    public void testSelectCount() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // 条件：年龄大于20
+        wrapper.gt("age", 20);
+        // 根据条件查询数据条数
+        Integer count = this.userMapper.selectCount(wrapper);
+        System.out.println("count => " + count);
+    }
+
 }
