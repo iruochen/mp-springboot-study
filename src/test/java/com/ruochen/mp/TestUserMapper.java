@@ -97,4 +97,25 @@ public class TestUserMapper {
         int result = this.userMapper.deleteByMap(map);
         System.out.println("result => " + result);
     }
+
+    @Test
+    public void testDelete() {
+        // 用法一：
+        /*
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name", "caocao")
+                .eq("password", "123456");
+        */
+
+        // 用法二（推荐使用）：
+        User user = new User();
+        user.setPassword("123456");
+        user.setUserName("caopi");
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>(user);
+
+        // 根据条件删除
+        int result = this.userMapper.delete(wrapper);
+        System.out.println("result => " + result);
+    }
 }
