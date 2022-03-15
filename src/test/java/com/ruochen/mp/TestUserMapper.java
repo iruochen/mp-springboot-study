@@ -256,4 +256,16 @@ public class TestUserMapper {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testOr() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE name = ? OR age = ?
+        wrapper.eq("name", "王五")
+                .or().eq("age", 21);
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
