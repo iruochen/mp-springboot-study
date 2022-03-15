@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TestUserMapper {
@@ -82,6 +85,16 @@ public class TestUserMapper {
     public void testDeleteById() {
         // 根据ID删除数据
         int result = this.userMapper.deleteById(8L);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void testDeleteByMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("user_name", "zhangsan");
+        map.put("password", "000");
+        // 根据 map 删除数据，多条件之间是 and 关系
+        int result = this.userMapper.deleteByMap(map);
         System.out.println("result => " + result);
     }
 }
