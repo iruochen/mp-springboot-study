@@ -245,4 +245,15 @@ public class TestUserMapper {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testOrderByAgeDesc() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // 按照年龄倒序排序
+        wrapper.orderByDesc("age");
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
