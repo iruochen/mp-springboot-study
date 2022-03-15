@@ -33,4 +33,14 @@ public class TestUserMapper2 {
         boolean result = user.insert();
         System.out.println("result => " + result);
     }
+
+    @Test
+    public void testUpdate() {
+        User user = new User();
+        user.setId(12L);  // 查询条件
+        user.setAge(123);  // 更新数据
+
+        boolean result = user.updateById();
+        System.out.println("result => " + result);
+    }
 }
