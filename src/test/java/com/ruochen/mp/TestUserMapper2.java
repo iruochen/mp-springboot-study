@@ -1,10 +1,13 @@
 package com.ruochen.mp;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.ruochen.mp.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -51,5 +54,16 @@ public class TestUserMapper2 {
 
         boolean result = user.deleteById();
         System.out.println("result => " + result);
+    }
+
+    @Test
+    public void testSelect() {
+        User user = new User();
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.ge("age", 22);  // 大于等于22岁的用户
+        List<User> users = user.selectList(wrapper);
+        for (User user1 : users) {
+            System.out.println(user1);
+        }
     }
 }
