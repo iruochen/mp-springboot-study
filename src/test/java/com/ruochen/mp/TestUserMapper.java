@@ -2,6 +2,8 @@ package com.ruochen.mp;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ruochen.mp.mapper.UserMapper;
 import com.ruochen.mp.pojo.User;
 import org.junit.Test;
@@ -166,6 +168,25 @@ public class TestUserMapper {
         List<User> users = this.userMapper.selectList(wrapper);
         for (User user : users) {
             System.out.println(user);
+        }
+    }
+
+    // 测试分页查询
+    @Test
+    public void testSelectPage() {
+        Page<User> page = new Page<>(1, 1);  // 第一页，一条数据
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // 设置查询条件
+        wrapper.like("email", "@");
+        IPage<User> iPage = this.userMapper.selectPage(page, wrapper);
+        System.out.println("数据总条数：" + iPage.getTotal());
+        System.out.println("数据总页数：" + iPage.getPages());
+        System.out.println("当前页数：" + iPage.getCurrent());
+
+        List<User> records = iPage.getRecords();
+        for (User record : records) {
+            System.out.println(record);
         }
     }
 }
