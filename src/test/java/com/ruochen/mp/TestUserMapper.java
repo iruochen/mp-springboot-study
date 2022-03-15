@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -116,6 +117,13 @@ public class TestUserMapper {
 
         // 根据条件删除
         int result = this.userMapper.delete(wrapper);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void testDeleteBatchIds() {
+        // 根据id批量删除
+        int result= this.userMapper.deleteBatchIds(Arrays.asList(9L, 10L));
         System.out.println("result => " + result);
     }
 }
