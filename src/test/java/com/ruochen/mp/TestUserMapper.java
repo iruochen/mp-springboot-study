@@ -268,4 +268,17 @@ public class TestUserMapper {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testSelect() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // SELECT id,name FROM tb_user WHERE name = ? OR age = ?
+        wrapper.eq("name", "王五")
+                .or().eq("age", 21)
+                .select("id", "name");  // 指定查询的字段
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
