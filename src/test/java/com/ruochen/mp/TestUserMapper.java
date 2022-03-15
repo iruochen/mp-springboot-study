@@ -158,4 +158,14 @@ public class TestUserMapper {
         System.out.println("count => " + count);
     }
 
+    @Test
+    public void testSelectList() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // 设置查询条件
+        wrapper.like("email", "@");
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
