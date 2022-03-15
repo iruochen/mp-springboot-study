@@ -28,7 +28,7 @@ public class TestUserMapper2 {
         user.setAge(22);
         user.setName("刘备");
         user.setMail("liubei@1.com");
-        
+
         // 调用AR的insert方法插入数据
         boolean result = user.insert();
         System.out.println("result => " + result);
@@ -41,6 +41,15 @@ public class TestUserMapper2 {
         user.setAge(123);  // 更新数据
 
         boolean result = user.updateById();
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void testDelete() {
+        User user = new User();
+        user.setId(12L);
+
+        boolean result = user.deleteById();
         System.out.println("result => " + result);
     }
 }
