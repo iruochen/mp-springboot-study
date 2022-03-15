@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
@@ -123,7 +124,17 @@ public class TestUserMapper {
     @Test
     public void testDeleteBatchIds() {
         // 根据id批量删除
-        int result= this.userMapper.deleteBatchIds(Arrays.asList(9L, 10L));
+        int result = this.userMapper.deleteBatchIds(Arrays.asList(9L, 10L));
         System.out.println("result => " + result);
     }
+
+    @Test
+    public void testSelectBatchIds() {
+        // 根据ID批量查询数据
+        List<User> users = this.userMapper.selectBatchIds(Arrays.asList(2L, 3L, 4L, 100L));
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
+
 }
