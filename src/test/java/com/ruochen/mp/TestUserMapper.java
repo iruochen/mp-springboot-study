@@ -1,5 +1,7 @@
 package com.ruochen.mp;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.ruochen.mp.mapper.UserMapper;
 import com.ruochen.mp.pojo.User;
 import org.junit.Test;
@@ -44,6 +46,35 @@ public class TestUserMapper {
         user.setPassword("5555");
 
         int result = this.userMapper.updateById(user);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void testUpdate() {
+        User user = new User();
+        user.setAge(33);  // 更新字段
+        user.setPassword("888");
+
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+
+        // 匹配 user_name = zhangsan 的用户数据
+        wrapper.eq("user_name", "zhangsan");
+
+        // 根据条件更新
+        int result = this.userMapper.update(user, wrapper);
+        System.out.println("result => " + result);
+    }
+
+    @Test
+    public void testUpdate2() {
+        UpdateWrapper<User> wrapper = new UpdateWrapper<>();
+        // 这里都是字段名，不是属性名
+        wrapper.set("age", 55).set("password", "000")  // 更新的字段
+                .eq("user_name", "zhangsan");  // 更新的条件
+
+
+        // 根据条件更新
+        int result = this.userMapper.update(null, wrapper);
         System.out.println("result => " + result);
     }
 }
