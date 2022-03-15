@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class User {
 
     // 设置ID策略-自增长
-    @TableId(type = IdType.AUTO)
+    // @TableId(type = IdType.AUTO)
     private Long id;
     private String userName;
 
