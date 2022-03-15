@@ -233,4 +233,16 @@ public class TestUserMapper {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testLike() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE name LIKE ?
+        // 参数： %四(String)
+        wrapper.likeLeft("name", "四");
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
