@@ -137,4 +137,15 @@ public class TestUserMapper {
         }
     }
 
+    @Test
+    public void testSelectOne() {
+        // 查询条件
+        User user = new User();
+        user.setUserName("lisi");
+        QueryWrapper<User> wrapper = new QueryWrapper<>(user);
+        // 查询的数据超过一条时会抛出异常
+        User u = this.userMapper.selectOne(wrapper);
+        System.out.println(u);
+    }
+
 }
