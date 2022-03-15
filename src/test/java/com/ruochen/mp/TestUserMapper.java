@@ -198,4 +198,26 @@ public class TestUserMapper {
         User user = this.userMapper.findById(2L);
         System.out.println(user);
     }
+
+    @Test
+    public void testAllEq() {
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", "李四");
+        params.put("age", "20");
+        params.put("password", null);
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE password IS NULL AND name = ? AND age = ?
+        // wrapper.allEq(params);
+
+        // SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE name = ? AND age = ?
+        // wrapper.allEq(params, false);
+
+        // param 中的值是否可以作为查询条件（与k进行比对）
+        // SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE age = ?
+        wrapper.allEq((k, v) -> (k.equals("age") || k.equals("id")), params);
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
