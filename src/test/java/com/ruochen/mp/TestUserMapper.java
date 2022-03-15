@@ -220,4 +220,17 @@ public class TestUserMapper {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testEq() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        // SELECT id,user_name,name,age,email AS mail FROM tb_user WHERE password = ? AND age >= ? AND name IN (?,?,?)
+        wrapper.eq("password", "123456")
+                .ge("age", 20)
+                .in("name", "李四", "王五", "赵六");
+        List<User> users = this.userMapper.selectList(wrapper);
+        for (User user : users) {
+            System.out.println(user);
+        }
+    }
 }
