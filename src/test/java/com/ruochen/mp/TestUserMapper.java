@@ -35,4 +35,15 @@ public class TestUserMapper {
         User user = this.userMapper.selectById(1L);
         System.out.println(user);
     }
+
+    @Test
+    public void testUpdateById() {
+        User user = new User();
+        user.setId(1L);  // 条件：根据id更新
+        user.setAge(22);  // 更新字段
+        user.setPassword("5555");
+
+        int result = this.userMapper.updateById(user);
+        System.out.println("result => " + result);
+    }
 }
