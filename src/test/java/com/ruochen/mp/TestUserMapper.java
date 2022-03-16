@@ -41,7 +41,7 @@ public class TestUserMapper {
 
     @Test
     public void testSelectById() {
-        User user = this.userMapper.selectById(1L);
+        User user = this.userMapper.selectById(2L);
         System.out.println(user);
     }
 
