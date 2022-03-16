@@ -40,5 +40,4 @@ public class MybatisPlusConfig {
         sqlExplainInterceptor.setSqlParserList(list);
         return sqlExplainInterceptor;
     }
-
 }

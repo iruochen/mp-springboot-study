@@ -10,4 +10,14 @@
         <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor"/>
     </plugins>
     -->
+
+    <plugins>
+        <!--性能分析拦截器，用于输入每条SQL语句及其执行时间，可以设置最大执行时间，超过时间会抛出异常（只用于开发环境，不建议用于生产环境）-->
+        <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor">
+            <!--最大执行时间，单位为毫秒-->
+            <property name="maxTime" value="300"/>
+            <!--对输入的SQL语句做格式化，默认为 false-->
+            <property name="format" value="true"/>
+        </plugin>
+    </plugins>
 </configuration>
