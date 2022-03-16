@@ -88,7 +88,7 @@ public class TestUserMapper {
     @Test
     public void testDeleteById() {
         // 根据ID删除数据
-        int result = this.userMapper.deleteById(8L);
+        int result = this.userMapper.deleteById(2L);
         System.out.println("result => " + result);
     }
 

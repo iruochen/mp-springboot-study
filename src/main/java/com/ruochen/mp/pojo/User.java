@@ -38,4 +38,7 @@ public class User extends Model<User> {
         UPDATE `tb_user` SET `version`='1';
      */
     private Integer version;
+
+    @TableLogic  // 逻辑删除字段，1-删除，0-未删除
+    private Integer deleted;
 }
