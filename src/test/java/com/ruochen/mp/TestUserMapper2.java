@@ -47,6 +47,18 @@ public class TestUserMapper2 {
         System.out.println("result => " + result);
     }
 
+    /**
+     * 测试全表更新，SQL分析器阻断效果
+     */
+    @Test
+    public void testUpdateAll() {
+        User user = new User();
+        user.setAge(123);  // 更新数据
+
+        boolean result = user.update(null);  // 全表更新
+        System.out.println("result => " + result);
+    }
+
     @Test
     public void testDelete() {
         User user = new User();
