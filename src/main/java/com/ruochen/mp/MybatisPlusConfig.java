@@ -2,6 +2,7 @@ package com.ruochen.mp;
 
 import com.baomidou.mybatisplus.core.parser.ISqlParser;
 import com.baomidou.mybatisplus.extension.parsers.BlockAttackSqlParser;
+import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import com.ruochen.mp.plugins.MyInterceptor;
@@ -39,5 +40,15 @@ public class MybatisPlusConfig {
         list.add(new BlockAttackSqlParser());  // 全表更新、删除阻断器
         sqlExplainInterceptor.setSqlParserList(list);
         return sqlExplainInterceptor;
+    }
+
+    /**
+     * 乐观锁插件配置
+     *
+     * @return
+     */
+    @Bean
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
+        return new OptimisticLockerInterceptor();
     }
 }

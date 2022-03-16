@@ -1,9 +1,6 @@
 package com.ruochen.mp.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,4 +28,13 @@ public class User extends Model<User> {
 
     @TableField(exist = false)  // 表示此字段在数据库表中不存在
     private String address; // 在数据库表中不存在
+
+    @Version  // 乐观锁版本字段
+    /*
+        数据库操作
+        ALTER TABLE `tb_user`
+        ADD COLUMN `version` int(10) NULL AFTER `email`;
+        UPDATE `tb_user` SET `version`='1';
+     */
+    private Integer version;
 }

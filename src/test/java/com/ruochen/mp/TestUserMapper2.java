@@ -48,6 +48,23 @@ public class TestUserMapper2 {
     }
 
     /**
+     * 测试乐观锁
+     */
+    @Test
+    public void testUpdateVersion() {
+        User user = new User();
+        user.setId(2L);  // 查询条件
+
+        User userVersion = user.selectById();
+
+        user.setAge(33);  // 更新数据
+        user.setVersion(userVersion.getVersion());  // 当前版本信息
+
+        boolean result = user.updateById();
+        System.out.println("result => " + result);
+    }
+
+    /**
      * 测试全表更新，SQL分析器阻断效果
      */
     @Test
