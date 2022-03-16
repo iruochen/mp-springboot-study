@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.parsers.BlockAttackSqlParser;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
+import com.ruochen.mp.injectors.MySqlInjector;
 import com.ruochen.mp.plugins.MyInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
@@ -50,5 +51,14 @@ public class MybatisPlusConfig {
     @Bean
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
+    }
+
+    /**
+     * 注入自定义的SQL注入器
+     * @return
+     */
+    @Bean
+    public MySqlInjector mySqlInjector() {
+        return new MySqlInjector();
     }
 }

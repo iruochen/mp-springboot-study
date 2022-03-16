@@ -281,4 +281,12 @@ public class TestUserMapper {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testFindAll() {
+        List<User> userList = this.userMapper.findAll();
+        for (User user : userList) {
+            System.out.println(user);
+        }
+    }
 }
